@@ -8,7 +8,6 @@ public:
     Sort();
     ~Sort();
     virtual std::vector<int> execute(std::vector<int> &input) = 0;
-    void print(std::vector<int> &input);
 };
 
 /** QUICK SORT */
