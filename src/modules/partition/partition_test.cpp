@@ -13,6 +13,6 @@ int main(){
     partition->execute(input);
     print_vector(input);
     assert(input == expected);
-    std::cout << "[PASS] buble sort check" << std::endl;
+    std::cout << "[PASS] naive partition check" << std::endl;
     return 0;
 }
