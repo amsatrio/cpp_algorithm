@@ -4,12 +4,19 @@ class Partition {
   private:
   public:
     ~Partition();
-    virtual void execute(std::vector<int> &input) = 0;
+    virtual int execute(std::vector<int> &input, int low, int high) { return 0; };
 };
 
 class NaivePartition : public Partition {
   private:
   public:
     ~NaivePartition();
-    void execute(std::vector<int> &input) override;
+    int execute(std::vector<int> &input, int low, int high) override;
+};
+
+class LomutoPartition : public Partition {
+  private:
+  public:
+    ~LomutoPartition();
+    int execute(std::vector<int> &input, int low, int high) override;
 };

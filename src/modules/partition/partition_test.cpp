@@ -6,13 +6,31 @@
 #include <vector>
 
 int main(){
-    std::vector<int> input = {5, 13, 6, 9, 12, 11, 8};
-    std::vector<int> expected = {5, 6, 8, 13, 9, 12, 11};
+    std::vector<int> input;
+    std::vector<int> expected;
+    int pivot_index;
     
+    input = {5, 13, 6, 9, 12, 11, 8};
+    expected = {5, 6, 8, 13, 9, 12, 11};
+
     std::unique_ptr<Partition> partition = std::make_unique<NaivePartition>();
-    partition->execute(input);
+    print_vector(input);
+    pivot_index = partition->execute(input, 0, input.size());
     print_vector(input);
     assert(input == expected);
+    assert(pivot_index == 2);
     std::cout << "[PASS] naive partition check" << std::endl;
+
+
+    input = {5, 13, 6, 9, 12, 11, 8};
+    expected = {5, 6, 8, 9, 12, 11, 13};
+    
+    partition = std::make_unique<LomutoPartition>();
+    print_vector(input);
+    pivot_index = partition->execute(input, 0, input.size());
+    print_vector(input);
+    assert(input == expected);
+    assert(pivot_index == 2);
+    std::cout << "[PASS] lomuto partition check" << std::endl;
     return 0;
 }

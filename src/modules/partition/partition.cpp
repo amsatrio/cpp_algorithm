@@ -1,29 +1,56 @@
 #include "partition.h"
 
-Partition::~Partition(){}
+Partition::~Partition() {}
 
-NaivePartition::~NaivePartition(){}
-void NaivePartition::execute(std::vector<int> &input) {
-    int n = input.size();
+NaivePartition::~NaivePartition() {}
+int NaivePartition::execute(std::vector<int> &input, int low, int high) {
 
-    std::vector<int> tmp(n);
-    int tmp_index = 0;
+    std::vector<int> tmp(high);
 
-    int pivot = input[n - 1];
+    int pivot = input[high - 1];
 
-    for (int i = 0; i <= n - 1; i++) {
+    for (int i = 0; i <= high - 1; i++) {
         if (input[i] <= pivot) {
-            tmp[tmp_index] = input[i];
-            tmp_index++;
+            tmp[low] = input[i];
+            low++;
         }
     }
 
-    for (int i = 0; i <= n - 1; i++) {
+    int pivotIndex = low - 1;
+
+    for (int i = 0; i <= high - 1; i++) {
         if (input[i] > pivot) {
-            tmp[tmp_index] = input[i];
-            tmp_index++;
+            tmp[low] = input[i];
+            low++;
         }
     }
 
     input = tmp;
+
+    return pivotIndex;
+}
+
+LomutoPartition::~LomutoPartition() {}
+int LomutoPartition::execute(std::vector<int> &input, int low, int high) {
+
+    int i = low - 1;
+
+    int pivot = input[high - 1];
+
+    for (int j = 0; j < high; j++) {
+        if (input[j] < pivot) {
+            i++;
+
+            int tmp = input[i];
+            input[i] = input[j];
+            input[j] = std::move(tmp);
+        }
+    }
+
+    i++;
+    int tmp = input[i];
+    input[i] = input[high - 1];
+    input[high - 1] = std::move(tmp);
+
+    return i;
 }
