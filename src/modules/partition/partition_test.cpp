@@ -9,11 +9,12 @@ int main(){
     std::vector<int> input;
     std::vector<int> expected;
     int pivot_index;
+    std::unique_ptr<Partition> partition;
     
     input = {5, 13, 6, 9, 12, 11, 8};
     expected = {5, 6, 8, 13, 9, 12, 11};
 
-    std::unique_ptr<Partition> partition = std::make_unique<NaivePartition>();
+    partition = std::make_unique<NaivePartition>();
     print_vector(input);
     pivot_index = partition->execute(input, 0, input.size());
     print_vector(input);
@@ -32,5 +33,18 @@ int main(){
     assert(input == expected);
     assert(pivot_index == 2);
     std::cout << "[PASS] lomuto partition check" << std::endl;
+
+
+    input = {5, 13, 6, 9, 12, 11, 8};
+    expected = {5, 6, 8, 9, 12, 11, 13};
+    
+    partition = std::make_unique<HoaresPartition>();
+    print_vector(input);
+    pivot_index = partition->execute(input, 0, input.size());
+    print_vector(input);
+    assert(input == expected);
+    assert(pivot_index == 2);
+    std::cout << "[PASS] hoare's partition check" << std::endl;
+
     return 0;
 }

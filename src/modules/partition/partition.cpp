@@ -54,3 +54,10 @@ int LomutoPartition::execute(std::vector<int> &input, int low, int high) {
 
     return i;
 }
+
+
+HoaresPartition::~HoaresPartition() {}
+int HoaresPartition::execute(std::vector<int> &input, int low, int high) {
+
+    return 0;
+}

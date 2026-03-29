@@ -20,3 +20,10 @@ class LomutoPartition : public Partition {
     ~LomutoPartition();
     int execute(std::vector<int> &input, int low, int high) override;
 };
+
+class HoaresPartition : public Partition {
+  private:
+  public:
+    ~HoaresPartition();
+    int execute(std::vector<int> &input, int low, int high) override;
+};
