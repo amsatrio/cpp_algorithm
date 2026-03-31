@@ -16,7 +16,7 @@ int main(){
 
     partition = std::make_unique<NaivePartition>();
     print_vector(input);
-    pivot_index = partition->execute(input, 0, input.size());
+    pivot_index = partition->execute(input, 0, input.size() - 1);
     print_vector(input);
     assert(input == expected);
     assert(pivot_index == 2);
@@ -28,7 +28,7 @@ int main(){
     
     partition = std::make_unique<LomutoPartition>();
     print_vector(input);
-    pivot_index = partition->execute(input, 0, input.size());
+    pivot_index = partition->execute(input, 0, input.size() - 1);
     print_vector(input);
     assert(input == expected);
     assert(pivot_index == 2);
@@ -40,7 +40,7 @@ int main(){
     
     partition = std::make_unique<HoaresPartition>();
     print_vector(input);
-    pivot_index = partition->execute(input, 0, input.size());
+    pivot_index = partition->execute(input, 0, input.size() - 1);
     print_vector(input);
     assert(input == expected);
     assert(pivot_index == 2);

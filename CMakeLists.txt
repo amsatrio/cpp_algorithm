@@ -9,6 +9,7 @@ include_directories(src/modules/sort src/modules/util)
 add_executable(sort_test 
 src/modules/sort/sort_test.cpp
 src/modules/sort/sort.cpp
+src/modules/partition/partition.cpp
 src/modules/util/print.cpp
 )
 
