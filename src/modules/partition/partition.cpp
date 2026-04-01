@@ -70,19 +70,13 @@ int HoaresPartition::execute(std::vector<int> &input, int low, int high) {
     int pivot = input[low];
 
     while (true) {
-        do {
-            i++;
-        } while (input[i] < pivot);
+        do { i++; } while (input[i] < pivot);
+        do { j--; } while (input[j] > pivot);
 
-        do {
-            j--;
-        } while (input[j] > pivot);
-
-        if (i > j) break;
+        if (i >= j) return j;
 
         int tmp = input[i];
         input[i] = input[j];
         input[j] = std::move(tmp);
     }
-    return low;
 }

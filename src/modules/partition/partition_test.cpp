@@ -35,15 +35,15 @@ int main(){
     std::cout << "[PASS] lomuto partition check" << std::endl;
 
 
-    input = {5, 13, 6, 9, 12, 11, 8};
-    expected = {5, 6, 8, 9, 12, 11, 13};
+    input = {5, 3, 8, 4, 2, 7, 1, 10};
+    expected = {1, 3, 2, 4, 8, 7, 5, 10};
     
     partition = std::make_unique<HoaresPartition>();
     print_vector(input);
     pivot_index = partition->execute(input, 0, input.size() - 1);
     print_vector(input);
     assert(input == expected);
-    assert(pivot_index == 2);
+    assert(pivot_index == 3);
     std::cout << "[PASS] hoare's partition check" << std::endl;
 
     return 0;

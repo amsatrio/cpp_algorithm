@@ -6,21 +6,17 @@ Sort::~Sort() {}
 
 QuickSort::QuickSort() {}
 QuickSort::~QuickSort() {}
-void recrusive_lomuto(std::vector<int> &input, int low, int high,
-                      std::unique_ptr<Partition> &partition) {
-    if (low >= high)
-        return;
+void recrusive_lomuto(std::vector<int> &input, int low, int high, std::unique_ptr<Partition> &partition) {
+    if (low >= high) return;
 
     int pivot_index = partition->execute(input, low, high);
 
     recrusive_lomuto(input, low, pivot_index - 1, partition);
     recrusive_lomuto(input, pivot_index + 1, high, partition);
 }
-void recrusive_naive(std::vector<int> &input, int low, int high,
-                     std::unique_ptr<Partition> &partition) {
+void recrusive_naive(std::vector<int> &input, int low, int high, std::unique_ptr<Partition> &partition) {
 
-    if (low >= high)
-        return;
+    if (low >= high) return;
 
     int pivot_index = partition->execute(input, low, high);
     int absolute_pivot = low + pivot_index;
@@ -28,12 +24,23 @@ void recrusive_naive(std::vector<int> &input, int low, int high,
     recrusive_naive(input, low, absolute_pivot - 1, partition);
     recrusive_naive(input, absolute_pivot + 1, high, partition);
 }
+void recrusive_hoares(std::vector<int> &input, int low, int high, std::unique_ptr<Partition> &partition) {
+    if (low >= high) return;
+        
+    int pivot_index = partition->execute(input, low, high);
+
+    recrusive_hoares(input, low, pivot_index, partition);
+    recrusive_hoares(input, pivot_index + 1, high, partition);
+}
 std::vector<int> QuickSort::execute(std::vector<int> &input) {
     // std::unique_ptr<Partition> partition = std::make_unique<LomutoPartition>(); 
     // recrusive_lomuto(input, 0, input.size() - 1, partition);
 
-    std::unique_ptr<Partition> partition = std::make_unique<NaivePartition>();
-    recrusive_naive(input, 0, input.size() - 1, partition);
+    // std::unique_ptr<Partition> partition = std::make_unique<NaivePartition>();
+    // recrusive_naive(input, 0, input.size() - 1, partition);
+
+    std::unique_ptr<Partition> partition = std::make_unique<HoaresPartition>();
+    recrusive_hoares(input, 0, input.size() - 1, partition);
 
     return input;
 }
