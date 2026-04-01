@@ -7,8 +7,6 @@ public:
     ~Search();
     virtual int execute(std::vector<int> &input, int x) { return -1; };
 };
-Search::Search() {}
-Search::~Search() {}
 
 class LinearSearch: public Search {
 private:
@@ -17,8 +15,6 @@ public:
     ~LinearSearch();
     int execute(std::vector<int> &input, int x) override;
 };
-LinearSearch::LinearSearch(){}
-LinearSearch::~LinearSearch(){}
 
 class BinarySearch : public Search {
 private:
@@ -27,7 +23,3 @@ public:
     ~BinarySearch();
     int execute(std::vector<int> &input, int x) override;
 };
-BinarySearch::BinarySearch(){}
-BinarySearch::~BinarySearch(){}
-
-

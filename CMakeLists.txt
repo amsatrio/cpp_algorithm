@@ -21,7 +21,18 @@ src/modules/partition/partition.cpp
 src/modules/util/print.cpp
 )
 
+# search algorithm
+include_directories(src/modules/search src/modules/util)
+add_executable(search_test 
+src/modules/search/search_test.cpp
+src/modules/search/search.cpp
+src/modules/sort/sort.cpp
+src/modules/partition/partition.cpp
+src/modules/util/print.cpp
+)
+
 # Testing Configuration
 enable_testing()
 add_test(NAME SortTest COMMAND sort_test)
 add_test(NAME PartitionTest COMMAND partition_test)
+add_test(NAME SearchTest COMMAND search_test)
