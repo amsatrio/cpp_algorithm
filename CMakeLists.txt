@@ -11,6 +11,9 @@ add_library(algorithms_lib STATIC
     src/modules/partition/partition.cpp
     src/modules/search/search.cpp
     src/modules/util/print.cpp
+
+    src/modules/graph/graph.cpp
+    src/modules/graph/traversal/traversal.cpp
 )
 
 # 2. Set up include directories for the library
@@ -19,6 +22,9 @@ target_include_directories(algorithms_lib PUBLIC
     src/modules/partition 
     src/modules/search 
     src/modules/util
+
+    src/modules/graph
+    src/modules/graph/traversal
 )
 
 # 3. Define Executables
@@ -36,8 +42,13 @@ target_link_libraries(partition_test PRIVATE algorithms_lib)
 add_executable(search_test src/modules/search/search_test.cpp)
 target_link_libraries(search_test PRIVATE algorithms_lib)
 
+# Traversal Test
+add_executable(traversal_test src/modules/graph/traversal/traversal_test.cpp)
+target_link_libraries(traversal_test PRIVATE algorithms_lib)
+
 # Testing Configuration
 enable_testing()
 add_test(NAME SortTest COMMAND sort_test)
 add_test(NAME PartitionTest COMMAND partition_test)
 add_test(NAME SearchTest COMMAND search_test)
+add_test(NAME TraversalTest COMMAND traversal_test)
