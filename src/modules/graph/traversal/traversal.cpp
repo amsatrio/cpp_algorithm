@@ -8,40 +8,51 @@ Traversal::~Traversal() {}
 BreadthFirstSearch::BreadthFirstSearch() {}
 BreadthFirstSearch::~BreadthFirstSearch() {}
 
-void BreadthFirstSearch::execute(Graph graph, int start_node) {
-    // 1. Create a boolean vector to keep track of visited nodes
+std::vector<int> BreadthFirstSearch::execute(Graph graph, int start_node) {
     std::vector<bool> visited(graph.V, false);
-    
-    // 2. Create a queue for BFS
     std::queue<int> q;
+    std::vector<int> result;
 
-    // 3. Mark the starting node as visited and enqueue it
     visited[start_node] = true;
     q.push(start_node);
 
-    std::cout << "BFS starting from node " << start_node << ": ";
-
-    while (!q.empty()) {
-        // 4. Dequeue a vertex and print it
+    while(!q.empty()) {
+        // visit source
         int current = q.front();
-        std::cout << current << " ";
         q.pop();
+        result.push_back(current);
 
-        // 5. Get all adjacent vertices of the dequeued vertex
-        // If an adjacent vertex has not been visited, mark it visited and enqueue it
-        for (int neighbor : graph.adj[current]) {
-            if (!visited[neighbor]) {
-                visited[neighbor] = true;
-                q.push(neighbor);
+        // visit all unvisited neighbours
+        for (int i : graph.adj[current]) {
+            if (!visited[i]) {
+                visited[i] = true;
+                q.push(i);
             }
         }
     }
-    std::cout << std::endl;
+
+    return result;
 }
 
 DepthFirstSearch::DepthFirstSearch() {}
 DepthFirstSearch::~DepthFirstSearch() {}
+void depth_first_search_recrusive(Graph graph, std::vector<bool> &visited, int start_node, std::vector<int> &result) {
 
-void DepthFirstSearch::execute(Graph graph, int start_node) {
+    // visit source and mark visited
+    visited[start_node] = true;
+    result.push_back(start_node);
 
+    for (int i : graph.adj[start_node]) {
+        if (!visited[i]) {
+            depth_first_search_recrusive(graph, visited, i, result);
+        }
+    }
+}
+std::vector<int> DepthFirstSearch::execute(Graph graph, int start_node) {
+    std::vector<bool> visited(graph.V, false);
+    std::vector<int> result;
+
+    depth_first_search_recrusive(graph, visited, start_node, result);
+
+    return result;
 }

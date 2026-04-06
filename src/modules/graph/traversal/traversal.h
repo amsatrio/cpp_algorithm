@@ -5,7 +5,7 @@ private:
 public:
     Traversal();
     ~Traversal();
-    virtual void execute(Graph graph, int start_node) {};
+    virtual std::vector<int> execute(Graph graph, int start_node) { return std::vector<int>(); };
 };
 
 class BreadthFirstSearch : public Traversal {
@@ -14,7 +14,7 @@ public:
     BreadthFirstSearch();
     ~BreadthFirstSearch();
 
-    void execute(Graph graph, int start_node) override;
+    std::vector<int> execute(Graph graph, int start_node) override;
 };
 
 class DepthFirstSearch : public Traversal {
@@ -23,5 +23,5 @@ public:
     DepthFirstSearch();
     ~DepthFirstSearch();
 
-    void execute(Graph graph, int start_node) override;
+    std::vector<int> execute(Graph graph, int start_node) override;
 };
