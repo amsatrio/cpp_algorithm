@@ -9,11 +9,11 @@ int main() {
     std::vector<int> expected;
     std::vector<int> result;
     Graph graph(5);
-    graph.add_edge(0, 1);
-    graph.add_edge(0, 2);
-    graph.add_edge(1, 3);
-    graph.add_edge(1, 4);
-    graph.add_edge(2, 4);
+    graph.add_edge(0, 1, 0);
+    graph.add_edge(0, 2, 0);
+    graph.add_edge(1, 3, 0);
+    graph.add_edge(1, 4, 0);
+    graph.add_edge(2, 4, 0);
     graph.print_edges();
 
     std::unique_ptr<Traversal> traversal;

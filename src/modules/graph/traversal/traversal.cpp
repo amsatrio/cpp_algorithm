@@ -23,7 +23,8 @@ std::vector<int> BreadthFirstSearch::execute(Graph graph, int start_node) {
         result.push_back(current);
 
         // visit all unvisited neighbours
-        for (int i : graph.adj[current]) {
+        for (auto &p : graph.adj[current]) {
+            int i = p.first;
             if (!visited[i]) {
                 visited[i] = true;
                 q.push(i);
@@ -42,7 +43,8 @@ void depth_first_search_recrusive(Graph graph, std::vector<bool> &visited, int s
     visited[start_node] = true;
     result.push_back(start_node);
 
-    for (int i : graph.adj[start_node]) {
+    for (auto &p : graph.adj[start_node]) {
+        int i = p.first;
         if (!visited[i]) {
             depth_first_search_recrusive(graph, visited, i, result);
         }
