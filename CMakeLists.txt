@@ -14,6 +14,7 @@ add_library(algorithms_lib STATIC
 
     src/modules/graph/graph.cpp
     src/modules/graph/traversal/traversal.cpp
+    src/modules/graph/weighted/weighted.cpp
 )
 
 # 2. Set up include directories for the library
@@ -25,6 +26,7 @@ target_include_directories(algorithms_lib PUBLIC
 
     src/modules/graph
     src/modules/graph/traversal
+    src/modules/graph/weighted
 )
 
 # 3. Define Executables
@@ -46,9 +48,14 @@ target_link_libraries(search_test PRIVATE algorithms_lib)
 add_executable(traversal_test src/modules/graph/traversal/traversal_test.cpp)
 target_link_libraries(traversal_test PRIVATE algorithms_lib)
 
+# Weighted Test
+add_executable(weighted_test src/modules/graph/weighted/weighted_test.cpp)
+target_link_libraries(weighted_test PRIVATE algorithms_lib)
+
 # Testing Configuration
 enable_testing()
 add_test(NAME SortTest COMMAND sort_test)
 add_test(NAME PartitionTest COMMAND partition_test)
 add_test(NAME SearchTest COMMAND search_test)
 add_test(NAME TraversalTest COMMAND traversal_test)
+add_test(NAME WeightedTest COMMAND weighted_test)
